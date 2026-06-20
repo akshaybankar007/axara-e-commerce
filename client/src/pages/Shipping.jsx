@@ -21,55 +21,30 @@ const Shipping = () => {
         navigate('/payment');
     };
 
-    return (
-        <div className="max-w-md mx-auto mt-6 bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
+return (
+        <div className="max-w-md mx-auto mt-6 bg-zinc-900 p-8 border border-zinc-800 rounded-lg shadow-xl">
             <CheckoutSteps step1 step2 />
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Shipping Address</h2>
+            <h2 className="text-2xl font-bold text-zinc-100 mb-6 text-center">Shipping Address</h2>
 
             <form onSubmit={submitHandler} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
-                    <input
-                        type="text"
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
+                    <label className="block text-sm font-medium text-zinc-400 mb-1">Street Address</label>
+                    <input type="text" className="w-full p-2 bg-zinc-950 border border-zinc-700 text-zinc-100 rounded focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors" value={address} onChange={(e) => setAddress(e.target.value)} required />
                 </div>
-
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                    <select
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                    >
+                    <label className="block text-sm font-medium text-zinc-400 mb-1">City</label>
+                    <select className="w-full p-2 bg-zinc-950 border border-zinc-700 text-zinc-100 rounded focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors" value={city} onChange={(e) => setCity(e.target.value)} required>
                         <option value="Nagpur">Nagpur</option>
                         <option value="Gondiya">Gondiya</option>
                         <option value="Pune">Pune</option>
                         <option value="Mumbai">Mumbai</option>
                     </select>
                 </div>
-
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
-                    <input
-                        type="text"
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500"
-                        value={postalCode}
-                        onChange={(e) => setPostalCode(e.target.value)}
-                        required
-                        pattern="[0-9]{6}"
-                        title="Six digit postal code"
-                    />
+                    <label className="block text-sm font-medium text-zinc-400 mb-1">Postal Code</label>
+                    <input type="text" className="w-full p-2 bg-zinc-950 border border-zinc-700 text-zinc-100 rounded focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required pattern="[0-9]{6}" title="Six digit postal code" />
                 </div>
-
-                <button
-                    type="submit"
-                    className="w-full bg-gray-900 text-white p-2 rounded font-medium hover:bg-gray-800 transition-colors mt-6"
-                >
+                <button type="submit" className="w-full bg-white text-black font-bold p-2 rounded hover:bg-zinc-200 transition-colors mt-6 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                     Continue to Payment
                 </button>
             </form>

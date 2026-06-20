@@ -55,35 +55,26 @@ const PlaceOrder = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
                 <div className="lg:col-span-2 space-y-6">
-                    <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h2 className="text-xl font-bold text-gray-900 mb-4">Shipping</h2>
-                        <p className="text-gray-700">
-                            <strong>Address: </strong>
-                            {cart.shippingAddress.address}, {cart.shippingAddress.city} {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
-                        </p>
+                    <div className="bg-zinc-900 p-6 border border-zinc-800 rounded-lg shadow-sm">
+                        <h2 className="text-xl font-bold text-zinc-100 mb-4">Shipping</h2>
+                        <p className="text-zinc-400"><strong className="text-zinc-200">Address: </strong>{cart.shippingAddress.address}, {cart.shippingAddress.city} {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}</p>
                     </div>
 
-                    <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h2 className="text-xl font-bold text-gray-900 mb-4">Payment Method</h2>
-                        <p className="text-gray-700">
-                            <strong>Method: </strong> {cart.paymentMethod}
-                        </p>
+                    <div className="bg-zinc-900 p-6 border border-zinc-800 rounded-lg shadow-sm">
+                        <h2 className="text-xl font-bold text-zinc-100 mb-4">Payment Method</h2>
+                        <p className="text-zinc-400"><strong className="text-zinc-200">Method: </strong> {cart.paymentMethod}</p>
                     </div>
 
-                    <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h2 className="text-xl font-bold text-gray-900 mb-4">Order Items</h2>
+                    <div className="bg-zinc-900 p-6 border border-zinc-800 rounded-lg shadow-sm">
+                        <h2 className="text-xl font-bold text-zinc-100 mb-4">Order Items</h2>
                         {cart.cartItems.length === 0 ? (
-                            <div className="text-gray-500">Your cart is empty</div>
+                            <div className="text-zinc-500">Your cart is empty</div>
                         ) : (
-                            <div className="divide-y divide-gray-100">
+                            <div className="divide-y divide-zinc-800">
                                 {cart.cartItems.map((item, index) => (
                                     <div key={index} className="py-4 flex justify-between items-center">
-                                        <div>
-                                            <Link to={`/`} className="font-medium text-indigo-600 hover:underline">{item.name}</Link>
-                                        </div>
-                                        <div className="text-gray-700 font-medium">
-                                            {item.qty} x ₹{item.price} = ₹{(item.qty * item.price).toFixed(2)}
-                                        </div>
+                                        <div><Link to={`/`} className="font-medium text-indigo-400 hover:text-indigo-300 hover:underline transition-colors">{item.name}</Link></div>
+                                        <div className="text-zinc-300 font-medium">{item.qty} x ₹{item.price} = <span className="text-zinc-100">₹{(item.qty * item.price).toFixed(2)}</span></div>
                                     </div>
                                 ))}
                             </div>
@@ -91,31 +82,17 @@ const PlaceOrder = () => {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm h-fit">
-                    <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
-                    <div className="space-y-4 text-gray-700">
-                        <div className="flex justify-between">
-                            <span>Items</span>
-                            <span>₹{itemsPrice}</span>
-                        </div>
-                        <div className="flex justify-between pb-4 border-b border-gray-100">
-                            <span>Shipping</span>
-                            <span>₹{shippingPrice}</span>
-                        </div>
-                        <div className="flex justify-between font-bold text-lg text-gray-900 pt-2">
-                            <span>Total</span>
-                            <span>₹{totalPrice}</span>
-                        </div>
+                <div className="bg-zinc-900 p-6 border border-zinc-800 rounded-lg shadow-sm h-fit">
+                    <h2 className="text-xl font-bold text-zinc-100 mb-6">Order Summary</h2>
+                    <div className="space-y-4 text-zinc-400">
+                        <div className="flex justify-between"><span>Items</span><span className="text-zinc-200">₹{itemsPrice}</span></div>
+                        <div className="flex justify-between pb-4 border-b border-zinc-800"><span>Shipping</span><span className="text-zinc-200">₹{shippingPrice}</span></div>
+                        <div className="flex justify-between font-bold text-lg text-zinc-100 pt-2"><span>Total</span><span className="text-indigo-400">₹{totalPrice}</span></div>
                     </div>
 
-                    {error && <div className="mt-4 bg-red-50 text-red-600 p-3 rounded text-sm">{error}</div>}
+                    {error && <div className="mt-4 bg-red-900/30 text-red-400 border border-red-900/50 p-3 rounded text-sm">{error}</div>}
 
-                    <button
-                        type="button"
-                        disabled={cart.cartItems.length === 0 || loading}
-                        onClick={placeOrderHandler}
-                        className="w-full bg-gray-900 text-white py-3 rounded font-semibold mt-6 hover:bg-gray-800 transition-colors disabled:bg-gray-400"
-                    >
+                    <button type="button" disabled={cart.cartItems.length === 0 || loading} onClick={placeOrderHandler} className="w-full bg-white text-black py-3 rounded font-bold mt-6 hover:bg-zinc-200 transition-colors disabled:bg-zinc-800 disabled:text-zinc-600 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                         {loading ? 'Processing...' : 'Place Order'}
                     </button>
                 </div>
