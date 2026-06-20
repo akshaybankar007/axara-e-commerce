@@ -33,7 +33,10 @@ const importData = async () => {
             }
         ];
 
-        const createdUsers = await User.insertMany(users);
+        const createdUsers = [];
+        for (const user of users) {
+            createdUsers.push(await User.create(user))
+        }
         const adminUser = createdUsers[0]._id;
 
         const sampleProducts = [
