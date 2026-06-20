@@ -1,4 +1,5 @@
 import Order from '../models/Order.js';
+import Product from '../models/Product.js';
 
 export const addOrderItems = async (req, res) => {
     const { 
@@ -29,5 +30,16 @@ export const addOrderItems = async (req, res) => {
     });
 
     const createdOrder = await order.save();
+
+    for (const item of order.orderItems) {
+        const product = await Product.findById(item.product);
+        if (product) {
+            product.stock -= item.qty;
+            await product.save();
+        }
+    }
+
+
+
     res.status(201).json(createdOrder);
 };
