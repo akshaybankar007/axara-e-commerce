@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
-// System Health & Testing Routes
+// system Health & Testing Routes
 app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'active', application: 'Axara' });
 });
@@ -31,6 +32,10 @@ app.get('/api/test', (req, res) => {
     });
 });
 
+app.use(notFound);
+app.use(errorHandler);
+
+// Database Connection & Server Initialization
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI)
