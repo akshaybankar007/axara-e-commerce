@@ -10,7 +10,24 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('Database connection failed:', error.message);
         process.exit(1);
     });
-
+const sampleProducts = [
+            {
+                name: 'Minimalist Cotton T-Shirt',
+                image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop', // Real fashion placeholder
+                description: 'Premium heavyweight cotton, relaxed fit.',
+                price: 1499,
+                category: 'Apparel',
+                stock: 50
+            },
+            {
+                name: 'Urban Cargo Pants',
+                image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1000&auto=format&fit=crop', 
+                description: 'Utility pockets, adjustable cuffs, water-resistant.',
+                price: 2999,
+                category: 'Bottoms',
+                stock: 30
+            }
+        ];
 const importData = async () => {
     try {
         await User.deleteMany();
