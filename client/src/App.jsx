@@ -1,5 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast'; 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -21,9 +22,9 @@ const App = () => {
     dispatch(logout());
   };
 
-return (
+  return (
     <div className="min-h-screen flex flex-col font-sans text-zinc-100 bg-zinc-950 selection:bg-indigo-500/30">
-      {/* Glassmorphism Header */}
+      <Toaster position="top-center" reverseOrder={false} />
       <header className="bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link to="/" className="text-2xl font-extrabold text-white tracking-wider">
@@ -60,7 +61,6 @@ return (
 
       <main className="flex-grow max-w-7xl mx-auto w-full px-4 py-8">
         <Routes>
-          {/* ... Routes remain identical ... */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
