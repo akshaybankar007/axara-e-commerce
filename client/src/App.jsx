@@ -25,39 +25,44 @@ const App = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans text-zinc-100 bg-zinc-950 selection:bg-indigo-500/30">
       <Toaster position="top-center" reverseOrder={false} />
-      <header className="bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-extrabold text-white tracking-wider">
-            AKSHAY & DEVI <span className="text-indigo-500">CO.</span>
-          </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <Link to="/cart" className="text-zinc-300 hover:text-white transition-colors relative py-1">
-              Cart 
-              {cartCount > 0 && (
-                <span className="bg-indigo-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full ml-1.5 shadow-[0_0_10px_rgba(79,70,229,0.5)]">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-            
-            {userInfo ? (
-              <div className="flex items-center gap-4">
-                <span className="text-zinc-400 font-medium">Hello, <span className="text-zinc-100">{userInfo.name}</span></span>
-                <button 
-                  onClick={logoutHandler} 
-                  className="text-red-400 hover:text-red-300 font-medium cursor-pointer transition-colors"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <Link to="/login" className="bg-white text-black px-4 py-2 rounded font-semibold hover:bg-zinc-200 transition-colors">
-                Sign In
-              </Link>
-            )}
-          </nav>
+      
+<header className="bg-zinc-950/90 backdrop-blur-md border-b border-zinc-900 sticky top-0 z-50">
+  <div className="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+    
+    <Link to="/" className="text-xl font-light text-white tracking-[0.2em] uppercase">
+      Akshay & Devi <span className="font-bold">Co.</span>
+    </Link>
+    
+    <nav className="flex items-center gap-8 text-xs font-medium tracking-widest uppercase">
+      <Link to="/cart" className="text-zinc-400 hover:text-white transition-colors relative flex items-center gap-2">
+        Bag 
+        {cartCount > 0 && (
+          <span className="bg-zinc-100 text-zinc-950 text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+            {cartCount}
+          </span>
+        )}
+      </Link>
+      
+      {userInfo ? (
+        <div className="flex items-center gap-6">
+          <span className="text-zinc-500 hidden sm:inline-block">
+            Hi, <span className="text-zinc-200">{userInfo.name}</span>
+          </span>
+          <button 
+            onClick={logoutHandler} 
+            className="text-zinc-400 hover:text-white cursor-pointer transition-colors uppercase tracking-widest text-xs"
+          >
+            Sign Out
+          </button>
         </div>
-      </header>
+      ) : (
+        <Link to="/login" className="text-zinc-400 hover:text-white transition-colors">
+          Sign In
+        </Link>
+      )}
+    </nav>
+  </div>
+</header>
 
       <main className="flex-grow max-w-7xl mx-auto w-full px-4 py-8">
         <Routes>

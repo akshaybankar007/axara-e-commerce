@@ -12,45 +12,58 @@ const ProductCard = ({ product }) => {
         const qty = existItem ? existItem.qty + 1 : 1;
         if (qty <= product.stock) {
             dispatch(addToCart({ ...product, qty }));
-            toast.success(`${product.name} added to cart!`, {
+            toast.success(`${product.name} added to bag!`, {
                 style: { background: '#18181b', color: '#fff', border: '1px solid #27272a' }
             });
         }
     };
 
-    return(
+    return (
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            whileHover={{ y: -5 }}
-            className="border border-zinc-800 rounded-xl p-5 shadow-sm hover:shadow-xl hover:border-zinc-700 transition-all bg-zinc-900 flex flex-col group"
+            className="group flex flex-col cursor-pointer"
         >
-            <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors">
-                {product.name}
-            </h3>
-            <span className="text-xs font-medium text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 inline-block w-fit px-2 py-1 rounded mt-2">
-                {product.category}
-            </span>
-            <p className="text-sm text-zinc-400 mt-3 flex-grow line-clamp-2">
-                {product.description}
-            </p>
-            
-            <div className="mt-6 flex items-center justify-between pt-4 border-t border-zinc-800/50">
-                <span className="font-bold text-xl text-zinc-100">₹{product.price}</span>
-                <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleAddToCart}
-                    disabled={product.stock === 0}
-                    className={`px-4 py-2 rounded font-medium text-sm transition-all duration-300 ${
-                        product.stock > 0 
-                            ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_10px_rgba(79,70,229,0.3)] hover:shadow-[0_0_15px_rgba(79,70,229,0.5)]' 
-                            : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
-                    }`}
-                >
-                    {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                </motion.button>
+            {/* The Image Container - Essential for Luxury E-commerce */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-zinc-900 mb-4">
+                {/* Fallback placeholder if you don't have images in your DB yet */}
+                <img 
+                    src={product.image || `https://via.placeholder.com/400x500/18181b/ffffff?text=${encodeURIComponent(product.name)}`} 
+                    alt={product.name}
+                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100"
+                />
+            </div>
+
+            {/* Minimalist Details */}
+            <div className="flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-1">
+                    <h3 className="text-sm font-medium text-zinc-100 uppercase tracking-wide">
+                        {product.name}
+                    </h3>
+                    <span className="text-sm text-zinc-300 ml-4">
+                        ₹{product.price}
+                    </span>
+                </div>
+                
+                <p className="text-xs text-zinc-500 mb-4 uppercase tracking-wider">
+                    {product.category}
+                </p>
+                
+                <div className="mt-auto pt-3 border-t border-zinc-900">
+                    <button
+                        onClick={handleAddToCart}
+                        disabled={product.stock === 0}
+                        className={`w-full py-3 text-xs uppercase tracking-widest font-semibold transition-all duration-300 ${
+                            product.stock > 0 
+                                ? 'bg-zinc-100 text-zinc-950 hover:bg-white hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]' 
+                                : 'bg-zinc-900 text-zinc-600 cursor-not-allowed'
+                        }`}
+                    >
+                        {product.stock > 0 ? 'Add to Bag' : 'Sold Out'}
+                    </button>
+                </div>
             </div>
         </motion.div>
     );
