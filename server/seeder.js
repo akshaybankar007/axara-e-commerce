@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI)
 const sampleProducts = [
             {
                 name: 'Minimalist Cotton T-Shirt',
-                image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop', // Real fashion placeholder
+                image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop',
                 description: 'Premium heavyweight cotton, relaxed fit.',
                 price: 1499,
                 category: 'Apparel',
